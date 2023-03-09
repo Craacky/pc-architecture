@@ -23,7 +23,7 @@ static int lab1_init(void)
 	value = readPort(0x14);
 	asm("sti");
 	printk(KERN_ALERT "Port_read_module: %x\n", value);
-	
+
 	if (value & 1)
 	{		
 		printk(KERN_ALERT "Floppy disk drive: true\n");
@@ -31,15 +31,14 @@ static int lab1_init(void)
 	else
 	{
 		printk(KERN_ALERT "Floppy disk drive: false \n");
-	}
-	
+	}	
 	
 	if (value & 2)
 	{
 		printk(KERN_ALERT "Processor block for floating-point operations: true\n");
-  }
-  else
-  {
+	}
+	else
+	{
 		printk(KERN_ALERT "Processor block for floating-point operation: false\n");
 	}
 	
@@ -53,7 +52,6 @@ static int lab1_init(void)
     	printk(KERN_ALERT "Keyboard: false\n");
   }
 	
-	
 	if (value & 8)
 	{
 		printk(KERN_ALERT "Display: true\n");
@@ -62,8 +60,7 @@ static int lab1_init(void)
   {
 		printk(KERN_ALERT "Display: false\n");
   }
-    
-    
+     
 	if ((value & 48) == 0)
 	{
 		printk(KERN_ALERT "Main video adapter: EGA\n");
@@ -81,7 +78,6 @@ static int lab1_init(void)
 		printk(KERN_ALERT "Main video adapter: Text monochrome display\n");
 	}
 	
-		
 	if ((value & 192) == 0) 
 	{
 		printk(KERN_ALERT "Number of disk drivers: 1\n");
@@ -110,7 +106,6 @@ static void lab1_exit(void)
 {
 	printk(KERN_ALERT "Module Deleted\n");
 }
-
 
 module_init(lab1_init);
 module_exit(lab1_exit);
