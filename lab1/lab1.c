@@ -42,7 +42,6 @@ static int lab1_init(void)
 		printk(KERN_ALERT "Processor block for floating-point operation: false\n");
 	}
 	
-	
 	if (value & 4)
 	{
 		printk(KERN_ALERT "Keyboard: true\n");
@@ -51,15 +50,15 @@ static int lab1_init(void)
 	{
     	printk(KERN_ALERT "Keyboard: false\n");
   }
-	
+
 	if (value & 8)
 	{
 		printk(KERN_ALERT "Display: true\n");
-  }
-  else
+	}
+	else
   {
 		printk(KERN_ALERT "Display: false\n");
-  }
+	}
      
 	if ((value & 48) == 0)
 	{
