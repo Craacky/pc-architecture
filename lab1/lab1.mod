@@ -1,1 +1,1 @@
-/home/craacky/pc-architecture/lab1/lab1.o
+/home/craacky/projects/pc-architecture/lab1/lab1.o
