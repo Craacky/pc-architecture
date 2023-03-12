@@ -1,1 +1,0 @@
-cmd_/home/craacky/projects/pc-architecture/lab1/lab1.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/craacky/projects/pc-architecture/lab1/lab1.ko /home/craacky/projects/pc-architecture/lab1/lab1.o /home/craacky/projects/pc-architecture/lab1/lab1.mod.o;  true
