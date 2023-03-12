@@ -17,82 +17,41 @@ static int readPort(int reg)
 static int lab1_init(void)
 {
 	int value;
-	printk(KERN_ALERT "Module Pushed \n");
+	printk(KERN_ALERT "Module Pushed");
+
 	asm("cli");
 	value = readPort(0x14);
 	asm("sti");
-	printk(KERN_ALERT "Port_read_module: %x\n", value);
-    asm("cli");
-    for(int p = 0; p < 128; ++p)
-    {
+	printk(KERN_ALERT "Port_read_module: %x", value);
         
-        int v = readPort(p);
-        printk(KERN_ALERT "%x",v);
+    printk(KERN_ALERT "Floppy disk drive: %s", value & 1 ? "true": "false");
+    printk(KERN_ALERT "Processor block for floating-point operation: %s", value & 2 ? "true": "false");
+    printk(KERN_ALERT "Keyboard: %s", value & 4 ? "true": "false");
+	printk(KERN_ALERT "Display: %s", value & 8 ? "true": "false");
 
-    }
-    printk(KERN_ALERT "\n");
-    asm("sti");
-	if (value & 1)
-	{		
-		printk(KERN_ALERT "Floppy disk drive: true\n");
-	}
-	else
-	{
-		printk(KERN_ALERT "Floppy disk drive: false \n");
-	}	
-	
-	if (value & 2)
-	{
-		printk(KERN_ALERT "Processor block for floating-point operations: true\n");
-	}
-	else
-	{
-		printk(KERN_ALERT "Processor block for floating-point operation: false\n");
-	}
-	
-	if (value & 4)
-	{
-		printk(KERN_ALERT "Keyboard: true\n");
-	}
-	else
-	{
-		printk(KERN_ALERT "Keyboard: false\n");
-	}
-
-	//printk(KERN_ALERT "Display: %s\n", value & 8 ? "true": "false");
-
-	if (value & 8)
-	{
-		printk(KERN_ALERT "Display: true\n");
-	}
-	else
-	{
-		printk(KERN_ALERT "Display: false\n");
-	}
-
-	int vc = value & 24;
+	int vc = value & 48;
 	switch(vc >> 3)
 	{
 	case 0: // 00 - 0
-		printk(KERN_ALERT "Main video adapter: EGA or VGA\n");
+		printk(KERN_ALERT "Main video adapter: EGA or VGA");
 		break;
-	case 1: // 01 - 8
-	case 2: // 10 - 16
-		printk(KERN_ALERT "Main video adapter: CGA\n");
+	case 1: // 01 - 16
+	case 2: // 10 - 32
+		printk(KERN_ALERT "Main video adapter: CGA");
 		break;
-	case 3: // 11 - 24
-		printk(KERN_ALERT "Main video adapter: MDA\n");
+	case 3: // 11 - 48
+		printk(KERN_ALERT "Main video adapter: MDA");
 		break;
 	}
 
 	int disks = (value & 192) >> 6;
-	printk(KERN_ALERT "Number of disk drivers: %d\n", disks + 1);
+	printk(KERN_ALERT "Number of disk drivers: %d", disks + 1);
 	return 0;
 }
 
 static void lab1_exit(void)
 {
-	printk(KERN_ALERT "Module Deleted\n");
+	printk(KERN_ALERT "Module Deleted");
 }
 
 module_init(lab1_init);
