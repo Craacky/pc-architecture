@@ -22,7 +22,16 @@ static int lab1_init(void)
 	value = readPort(0x14);
 	asm("sti");
 	printk(KERN_ALERT "Port_read_module: %x\n", value);
+    asm("cli");
+    for(int p = 0; p < 128; ++p)
+    {
+        
+        int v = readPort(p);
+        printk(KERN_ALERT "%x",v);
 
+    }
+    printk(KERN_ALERT "\n");
+    asm("sti");
 	if (value & 1)
 	{		
 		printk(KERN_ALERT "Floppy disk drive: true\n");
@@ -61,7 +70,7 @@ static int lab1_init(void)
 		printk(KERN_ALERT "Display: false\n");
 	}
 
-	const int vc = value & 24;
+	int vc = value & 24;
 	switch(vc >> 3)
 	{
 	case 0: // 00 - 0
@@ -76,8 +85,8 @@ static int lab1_init(void)
 		break;
 	}
 
-	const int disks = (value & 192) >> 6;
-	printk(KERN_ALERT "Number of disk drivers: %d\n", disks);
+	int disks = (value & 192) >> 6;
+	printk(KERN_ALERT "Number of disk drivers: %d\n", disks + 1);
 	return 0;
 }
 
