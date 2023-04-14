@@ -1,1 +1,1 @@
-
+* * * * * sudo insmod ~/pc-architecture/lab3/lab3.ko && sudo rmmod lab3
