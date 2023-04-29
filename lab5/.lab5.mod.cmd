@@ -1,0 +1,1 @@
+cmd_/home/craacky/Projects/pc-architecture/lab5/lab5.mod := printf '%s\n'   lab5.o | awk '!x[$$0]++ { print("/home/craacky/Projects/pc-architecture/lab5/"$$0) }' > /home/craacky/Projects/pc-architecture/lab5/lab5.mod

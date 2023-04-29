@@ -1,0 +1,1 @@
+cmd_/home/craacky/Projects/pc-architecture/lab5/Module.symvers :=  scripts/mod/modpost       -o /home/craacky/Projects/pc-architecture/lab5/Module.symvers -T /home/craacky/Projects/pc-architecture/lab5/modules.order -i Module.symvers -e 
